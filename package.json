@@ -7,6 +7,7 @@
     "dev": "concurrently -k \"pnpm dev:server\" \"pnpm dev:metro\"",
     "dev:server": "cross-env NODE_ENV=development tsx watch server/_core/index.ts",
     "dev:metro": "cross-env EXPO_USE_METRO_WORKSPACE_ROOT=1 npx expo start --web --port ${EXPO_PORT:-8081}",
+    "prebuild:web": "node scripts/ensure-css-interop-cache.js",
     "build": "rm -rf node_modules/.cache .expo .metro dist && pnpm exec expo export -p web",
     "build:server": "esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:web": "npx expo export -p web",
